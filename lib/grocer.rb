@@ -1,3 +1,5 @@
+require 'pry'
+
 def find_item_by_name_in_collection(name, collection)
   collection.each do |item, item_info|
     
@@ -17,40 +19,42 @@ end
 #   { :item => "SALSA", :price => 1.50, :clearance => false },
 #   { :item => "TORTILLAS", :price => 2.00, :clearance => false },
 #   { :item => "HOT SAUCE", :price => 1.75, :clearance => false },
-#   { :item => "HOT SAUCE", :price => 1.75, :clearance => false }
-# ] 
+#   { :item => "HOT SAUCE", :price 
+
+
+def increment_count_of_item(cart, item_name)
+  cart_index = 0
+  
+  while cart_index < cart.size do
+    current_item = cart[cart_index]
+    
+    if (current_item[:item] == item_name)
+      current_item[:count] += 1
+    end
+    
+    cart_index += 1
+  end
+  cart
+end
      
      
 def consolidate_cart(cart)
-  consolidated = {}
-  
-  cart.each do |contents|
-    contents.each do |item, info|
-      
-      if consolidated.include?(item)
-        consolidated[item][:count] += 1
-        
-      else consolidated[item] = {
-          :price => info[:price],
-          :clearance => info[:clearance],
-          :count => 1
-      }
-      
-    end
-  end
-end
-consolidated
-end	
+  updated_cart = Array.new
+  cart_index = 0
+
+  while cart_index < cart.size do
+    current_item = cart[cart_index]
     
-
-                  
-
-# unconsolidated_cart = [
-#   {:item => "AVOCADO", :price => 3.00, :clearance => true },
-#   {:item => "AVOCADO", :price => 3.00, :clearance => true },
-#   {:item => "KALE", :price => 3.00, :clearance => false}
-# ]
-# consolidate_cart(unconsolidated_cart)
+    if (find_item_by_name_in_collection(current_item[:item], updated_cart) == nil)
+      current_item[:count] = 1
+      updated_cart.push(current_item)
+      
+    else
+      increment_count_of_item(updated_cart, current_item[:item])
+    end
   
-  
+    cart_index += 1
+  end
+  updated_cart
+end
   
