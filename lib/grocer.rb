@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 require 'pry'
 
+=======
+>>>>>>> 2f24681058f0c5225c3cadfedfc0fbbd124ce6e5
 def find_item_by_name_in_collection(name, collection)
   collection.each do |item, item_info|
     
@@ -19,6 +22,7 @@ end
 #   { :item => "SALSA", :price => 1.50, :clearance => false },
 #   { :item => "TORTILLAS", :price => 2.00, :clearance => false },
 #   { :item => "HOT SAUCE", :price => 1.75, :clearance => false },
+<<<<<<< HEAD
 #   { :item => "HOT SAUCE", :price 
 
 
@@ -57,4 +61,63 @@ def consolidate_cart(cart)
   end
   updated_cart
 end
+=======
+#   { :item => "HOT SAUCE", :price => 1.75, :clearance => false }
+# ] 
+     
+     
+def consolidate_cart(cart)
+  consolidated = {}
+  
+  cart.each do |contents|
+    contents.each do |item, info|
+      
+      if consolidated.include?(item)
+        consolidated[item][:count] += 1
+        
+      else consolidated[item] = {
+          :price => info[:price],
+          :clearance => info[:clearance],
+          :count => 1
+      }
+      
+    end
+  end
+end
+consolidated
+end	
+    
+
+                            
+  
+
+# def consolidate_cart(cart)
+#   final = Hash.new 
+#   count = :count
+  
+#   cart.each do |hash|
+#     hash.each do |food, description|
+      
+#       if final.has_key?(food) == false
+#         final[food] = description
+#         final[food][count] = 1
+        
+#       elsif final.has_key?(food)
+#         final[food][:count] +=1
+        
+#       end
+#     end
+#   end
+#   final
+# end
+
+# unconsolidated_cart = [
+#   {:item => "AVOCADO", :price => 3.00, :clearance => true },
+#   {:item => "AVOCADO", :price => 3.00, :clearance => true },
+#   {:item => "KALE", :price => 3.00, :clearance => false}
+# ]
+# consolidate_cart(unconsolidated_cart)
+  
+  
+>>>>>>> 2f24681058f0c5225c3cadfedfc0fbbd124ce6e5
   
